@@ -1,0 +1,112 @@
+[versions]
+#Convention
+java = "17"
+androidVersion = "2024.0.1"
+androidVersionCode = "1"
+androidMinSdk = "26"
+androidTargetSdk = "34"
+androidCompileSdk = "34"
+winVersion = "1.0.0"
+
+#Kotlin
+kotlin = "2.1.0"
+kotlinx-coroutines = "1.9.0"
+kotlinx-serialization = "1.7.3"
+ksp = "2.1.0-1.0.29"
+datetime = "0.6.1"
+
+#Lint
+detekt = "1.23.7"
+detektComposeRules = "0.4.19"
+detektFormatting = "1.23.7"
+
+#DI
+kodein = "7.22"
+
+#Compose
+compose-multiplatform = "1.7.1"
+compose-activity = "1.9.3"
+coil = "3.0.4"
+haze = "1.1.0"
+
+#Navigation
+decompose = "3.2.2"
+extensionsComposeJetbrains = "2.2.3"
+
+#Android
+agp = "8.5.2"
+android-splashscreen = "1.0.1"
+androidx-activityCompose = "1.9.3"
+androidx-appcompat = "1.7.0"
+androidx-constraintlayout = "2.2.0"
+androidx-core-ktx = "1.15.0"
+androidx-lifecycle = "2.8.4"
+androidx-material = "1.12.0"
+
+#Tests
+junit = "4.13.2"
+androidx-espresso-core = "3.6.1"
+androidx-test-junit = "1.2.1"
+
+
+[libraries]
+#Convention/composite build
+gradleplugin-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+gradleplugin-compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-multiplatform" }
+gradleplugin-composeCompiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+gradleplugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradleplugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
+#Kotlin
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
+kotlin-ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+
+#Lint
+detekt-compose = { module = "io.nlopez.compose.rules:detekt", version.ref = "detektComposeRules" }
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektFormatting" }
+
+#DI
+kodein = { module = "org.kodein.di:kodein-di", version.ref = "kodein" }
+
+#Compose
+compose-coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+compose-haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+
+#Navigation
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "extensionsComposeJetbrains" }
+
+#Android
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "android-splashscreen" }
+androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+
+#Tests
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+
+[plugins]
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSymbolProcessing = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+kmpConvention = { id = "vvchn.at.composempuisamples.kmpconvention", version = "conventionPlugin"}
+cmpConvention = { id = "vvchn.at.composempuisamples.cmpconvention", version = "conventionPlugin"}
+androidConvention = { id = "vvchn.at.composempuisamples.androidconvention", version = "conventionPlugin"}
+detektConvention = { id = "vvchn.at.composempuisamples.detektconvention", version = "conventionPlugin" }
