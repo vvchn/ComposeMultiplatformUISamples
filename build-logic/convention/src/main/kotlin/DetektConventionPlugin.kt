@@ -12,6 +12,7 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import vvchn.at.composempuisamples.applyPlugin
+import vvchn.at.composempuisamples.detektPlugins
 import vvchn.at.composempuisamples.detektVersion
 import vvchn.at.composempuisamples.javaVersion
 import vvchn.at.composempuisamples.libs
@@ -49,19 +50,19 @@ class DetektConventionPlugin : Plugin<Project> {
 //                baseline = file("${project.rootDir}/detekt/baseline/baseline.xml")
                 basePath = project.rootDir.path
 
+                allRules = true
                 buildUponDefaultConfig = true
                 parallel = true
                 ignoreFailures = true
             }
 
             dependencies {
-                "detektPlugins"(libs.detekt.compose)
-                "detektPlugins"(libs.detekt.formatting)
+                detektPlugins(libs.detekt.compose)
+                detektPlugins(libs.detekt.formatting)
             }
 
             tasks.withType<Detekt>().configureEach {
                 val taskName = this.name
-                val xmlReportFile = this.xmlReportFile
 
                 this.jvmTarget = javaVersion
                 jdkHome.set(file(jdkPath))

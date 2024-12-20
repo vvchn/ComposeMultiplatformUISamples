@@ -31,6 +31,13 @@ tasks.withType<KotlinCompile>().configureEach {
     compilerOptions.jvmTarget.set(JvmTarget.fromTarget(projectJavaVersion.toString()))
 }
 
+tasks {
+    validatePlugins {
+        enableStricterValidation = true
+        failOnWarning = true
+    }
+}
+
 gradlePlugin {
     plugins {
         register("kmpConvention") {
