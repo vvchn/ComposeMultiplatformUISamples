@@ -10,8 +10,7 @@ group = "vvchn.at.composempuisamples.buildlogic"
 dependencies {
     // TODO: Delete when Issue https://github.com/gradle/gradle/issues/15383 is resolved.
     // Workaround for version catalog to work inside convention plugin
-    // Error "Unresolved reference to version catalog" can safely be ignored
-    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+    implementation(files(libs::class.java.superclass.protectionDomain.codeSource.location))
 
     compileOnly(libs.gradleplugin.kotlin)
     compileOnly(libs.gradleplugin.android)
