@@ -31,7 +31,7 @@ class CmpConventionPlugin : Plugin<Project> {
 
                     nativeDistributions {
                         targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-                        packageName = defaultPackageName
+                        packageName = "$defaultPackageName.${projectDir.name}"
                         packageVersion = winVersion
                     }
                 }
