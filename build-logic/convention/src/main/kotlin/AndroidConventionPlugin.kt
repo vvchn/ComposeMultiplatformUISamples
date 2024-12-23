@@ -34,13 +34,15 @@ class AndroidConventionPlugin : Plugin<Project> {
                 }
                 buildTypes {
                     getByName("debug") {
+                        versionNameSuffix = "_debug"
                         isDebuggable = true
                         isMinifyEnabled = false
-                        versionNameSuffix = "_debug"
+                        isShrinkResources = false
                     }
                     getByName("release") {
                         isDebuggable = false
                         isMinifyEnabled = true
+                        isShrinkResources = true
                         proguardFiles(
                             getDefaultProguardFile("proguard-android-optimize.txt"),
                             "proguard-rules.pro"

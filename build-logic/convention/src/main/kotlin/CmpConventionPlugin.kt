@@ -10,6 +10,7 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginE
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import vvchn.at.composempuisamples.applyPlugin
+import vvchn.at.composempuisamples.debugImplementation
 import vvchn.at.composempuisamples.defaultPackageName
 import vvchn.at.composempuisamples.desktopMain
 import vvchn.at.composempuisamples.libs
@@ -21,7 +22,10 @@ class CmpConventionPlugin : Plugin<Project> {
             applyPlugin(libs.plugins.composeMultiplatform)
             applyPlugin(libs.plugins.composeCompiler)
 
-            extensions.getByType<ComposeExtension>().extensions.configure<DesktopExtension> {
+            val composeExtension = extensions.getByType<ComposeExtension>()
+            val composeDependencies = composeExtension.dependencies
+
+            composeExtension.extensions.configure<DesktopExtension> {
                 application {
                     mainClass = "$defaultPackageName.MainKt"
 
@@ -35,7 +39,6 @@ class CmpConventionPlugin : Plugin<Project> {
 
             extensions.configure<ComposeCompilerGradlePluginExtension> {
                 includeSourceInformation.set(true)
-
                 featureFlags.set(
                     setOf(
                         ComposeFeatureFlag.StrongSkipping,
@@ -43,8 +46,6 @@ class CmpConventionPlugin : Plugin<Project> {
                     )
                 )
             }
-
-            val composeDependencies = extensions.getByType<ComposeExtension>().dependencies
 
             extensions.configure<KotlinMultiplatformExtension> {
                 sourceSets.apply {
@@ -54,7 +55,7 @@ class CmpConventionPlugin : Plugin<Project> {
                     commonMain.dependencies {
                         implementation(composeDependencies.runtime)
                         implementation(composeDependencies.foundation)
-                        implementation(composeDependencies.material)
+                        implementation(composeDependencies.material3)
                         implementation(composeDependencies.ui)
                         implementation(composeDependencies.components.resources)
                         implementation(composeDependencies.components.uiToolingPreview)
@@ -66,7 +67,7 @@ class CmpConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                add("debugImplementation", composeDependencies.uiTooling)
+                debugImplementation(composeDependencies.uiTooling)
             }
         }
     }

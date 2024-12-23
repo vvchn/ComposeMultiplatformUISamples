@@ -11,3 +11,6 @@ internal val NamedDomainObjectContainer<KotlinSourceSet>.desktopMain: KotlinSour
 
 internal fun DependencyHandler.detektPlugins(dependencyNotation: Any): Dependency? =
     add("detektPlugins", dependencyNotation)
+
+internal fun DependencyHandler.debugImplementation(dependencyNotation: Any): Dependency? =
+    add("debugImplementation", dependencyNotation)

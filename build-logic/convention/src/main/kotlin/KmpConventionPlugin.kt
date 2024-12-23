@@ -27,7 +27,12 @@ class KmpConventionPlugin : Plugin<Project> {
                     }
                 }
 
-                jvm("desktop")
+                jvm("desktop") {
+                    compilerOptions {
+                        jvmTarget.set(JvmTarget.JVM_17)
+                        freeCompilerArgs.add("-Xjdk-release=$javaVersion")
+                    }
+                }
 
                 listOf(
                     iosX64(),
