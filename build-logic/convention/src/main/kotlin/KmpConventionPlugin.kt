@@ -14,6 +14,7 @@ class KmpConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(libs.plugins.kotlinMultiplatform)
+            applyPlugin(libs.plugins.kotlinxSerialization)
 
             extensions.configure<KotlinMultiplatformExtension> {
                 jvmToolchain {
@@ -52,6 +53,9 @@ class KmpConventionPlugin : Plugin<Project> {
                     commonMain.dependencies {
                         implementation(libs.androidx.lifecycle.viewmodel)
                         implementation(libs.androidx.lifecycle.runtime.compose)
+                        implementation(libs.kotlinx.serialization)
+                        implementation(libs.decompose)
+                        implementation(libs.decompose.jetbrains)
                     }
                     desktopMain.dependencies {
                         implementation(libs.kotlinx.coroutines.swing)
