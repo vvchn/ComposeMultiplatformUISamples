@@ -31,7 +31,8 @@ haze = "1.1.0"
 
 #Navigation
 decompose = "3.2.2"
-extensionsComposeJetbrains = "2.2.3"
+#TODO: Do not upgrade till "Could not resolve ...2.2.3 for <Apple targets>" issue is fixed
+extensionsComposeJetbrains = "2.2.2-compose-experimental"
 
 #Android
 agp = "8.5.2"

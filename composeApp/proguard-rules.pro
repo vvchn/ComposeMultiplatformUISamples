@@ -23,3 +23,5 @@
 
 
 #-keep class com.arkivanov.decompose.extensions.compose.jetbrains.mainthread.SwingMainThreadChecker
+#-keep class kotlinx.coroutines.internal.MainDispatcherFactory { *; }
+#-keep class kotlinx.coroutines.swing.SwingDispatcherFactory { *; }

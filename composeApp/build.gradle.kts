@@ -46,3 +46,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
+
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(project(":host"))
+        }
+    }
+}
