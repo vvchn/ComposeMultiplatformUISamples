@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.detektConvention)
 }
 
-private val defaultName = "vvchn.at.composempuisamples.app"
+private val defaultName = "vvchn.at.composempuisamples"
 
 android {
     namespace = defaultName
