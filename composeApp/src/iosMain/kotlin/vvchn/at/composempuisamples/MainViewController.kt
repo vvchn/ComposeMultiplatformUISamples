@@ -1,6 +1,6 @@
 package vvchn.at.composempuisamples
 
 import androidx.compose.ui.window.ComposeUIViewController
-import vvchn.at.composempuisamples.navigation.root.HostComponent
+import vvchn.at.composempuisamples.navigation.root.RootComponent
 
-fun MainViewController(appNavController: HostComponent) = ComposeUIViewController { App(appNavController) }
+fun MainViewController(appNavController: RootComponent) = ComposeUIViewController { App(appNavController) }

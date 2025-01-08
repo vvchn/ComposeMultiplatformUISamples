@@ -1,24 +1,14 @@
 package vvchn.at.composempuisamples
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import composemultiplatformuisamples.composeapp.generated.resources.Res
-import composemultiplatformuisamples.composeapp.generated.resources.compose_multiplatform
+import vvchn.at.composempuisamples.navigation.root.AppNavigation
+import vvchn.at.composempuisamples.navigation.root.RootComponent
 
 @Composable
 @Preview
-fun App() {
-    MaterialTheme {
+fun App(appNavController: RootComponent) {
+    /*MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = { showContent = !showContent }) {
@@ -32,5 +22,6 @@ fun App() {
                 }
             }
         }
-    }
+    }*/
+    AppNavigation(appNavController)
 }

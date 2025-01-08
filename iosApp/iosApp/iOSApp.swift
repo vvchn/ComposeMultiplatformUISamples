@@ -11,3 +11,9 @@ struct iOSApp: App {
         }
     }
 }
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    let root: HostComponent = provideRootComponent(
+        componentContext: DefaultComponentContext(lifecycle: ApplicationLifecycle())
+    )
+}

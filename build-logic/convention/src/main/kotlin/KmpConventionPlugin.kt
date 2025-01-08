@@ -55,7 +55,7 @@ class KmpConventionPlugin : Plugin<Project> {
                         implementation(libs.androidx.lifecycle.runtime.compose)
                         implementation(libs.kotlinx.serialization)
                         implementation(libs.decompose)
-                        implementation(libs.decompose.jetbrains)
+                        implementation(libs.decompose.multiplatform)
                     }
                     desktopMain.dependencies {
                         implementation(libs.kotlinx.coroutines.swing)

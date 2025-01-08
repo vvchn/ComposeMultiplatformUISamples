@@ -6,6 +6,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.compose.desktop.DesktopExtension
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.resources.ResourcesExtension
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -68,6 +69,11 @@ class CmpConventionPlugin : Plugin<Project> {
 
             dependencies {
                 debugImplementation(composeDependencies.uiTooling)
+            }
+
+            composeExtension.extensions.configure<ResourcesExtension> {
+                packageOfResClass = "$defaultPackageName.${projectDir.name}.generated.resources"
+                generateResClass = always
             }
         }
     }

@@ -31,8 +31,6 @@ haze = "1.1.0"
 
 #Navigation
 decompose = "3.2.2"
-#TODO: Do not upgrade till "Could not resolve ...2.2.3 for <Apple targets>" issue is fixed
-extensionsComposeJetbrains = "2.2.2-compose-experimental"
 
 #Android
 agp = "8.5.2"
@@ -78,7 +76,7 @@ compose-haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 
 #Navigation
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
-decompose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "extensionsComposeJetbrains" }
+decompose-multiplatform = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
 
 #Android
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
