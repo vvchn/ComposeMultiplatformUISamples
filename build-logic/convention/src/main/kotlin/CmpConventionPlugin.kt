@@ -13,7 +13,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import vvchn.at.composempuisamples.applyPlugin
 import vvchn.at.composempuisamples.debugImplementation
 import vvchn.at.composempuisamples.defaultPackageName
-import vvchn.at.composempuisamples.desktopMain
 import vvchn.at.composempuisamples.libs
 import vvchn.at.composempuisamples.winVersion
 
@@ -60,9 +59,6 @@ class CmpConventionPlugin : Plugin<Project> {
                         implementation(composeDependencies.ui)
                         implementation(composeDependencies.components.resources)
                         implementation(composeDependencies.components.uiToolingPreview)
-                    }
-                    desktopMain.dependencies {
-                        implementation(composeDependencies.desktop.currentOs)
                     }
                 }
             }

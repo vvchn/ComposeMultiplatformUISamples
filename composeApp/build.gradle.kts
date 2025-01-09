@@ -52,5 +52,8 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":host"))
         }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+        }
     }
 }
