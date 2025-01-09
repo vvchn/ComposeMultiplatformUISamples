@@ -5,14 +5,6 @@ plugins {
     alias(libs.plugins.detektConvention)
 }
 
-kotlin {
-    sourceSets.apply {
-        commonMain.dependencies {
-            implementation(project(":common"))
-        }
-    }
-}
-
 android {
-    namespace = "vvchn.at.composempuisamples.host"
+    namespace = "vvchn.at.composempuisamples.common"
 }

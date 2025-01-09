@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples.common
+package vvchn.at.composempuisamples
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -8,7 +8,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// TODO: Extract to shared module
 @Stable
 val MaterialTypography: Typography
     @Composable
