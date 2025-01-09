@@ -1,5 +1,5 @@
 <resources>
     <string name="about">О приложении</string>
-    <string name="sample">Пример %1d</string>
+    <string name="sample">Пример %1$d</string>
     <string name="unknown_version">Неизвестная версия</string>
 </resources>

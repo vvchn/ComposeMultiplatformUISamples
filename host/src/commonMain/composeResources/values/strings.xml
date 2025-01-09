@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Compose Multiplatform UI Samples</string>
     <string name="about">About</string>
-    <string name="sample">Sample %1d</string>
+    <string name="sample">Sample %1$d</string>
     <string name="todo" translatable="false">/* TODO:</string>
     <string name="unknown_version">Unknown version</string>
     <string name="github_link" translatable="false">https://github.com/vvchn</string>
