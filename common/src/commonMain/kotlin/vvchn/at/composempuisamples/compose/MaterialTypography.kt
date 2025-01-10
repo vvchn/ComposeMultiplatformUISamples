@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples
+package vvchn.at.composempuisamples.compose
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
