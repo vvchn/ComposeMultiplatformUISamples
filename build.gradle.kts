@@ -65,6 +65,7 @@ tasks.register<DetektCreateBaselineTask>("detektProjectBaseline") {
     excludeModuleLevelFolders()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 private inline fun SourceTask.excludeProjectLevelFolders() {
     exclude(".gradle/")
     exclude(".idea/")
@@ -72,6 +73,7 @@ private inline fun SourceTask.excludeProjectLevelFolders() {
     exclude("build/")
 }
 
+@Suppress("NOTHING_TO_INLINE")
 private inline fun SourceTask.excludeModuleLevelFolders() {
     exclude("**/build/**")
     exclude("**/resources/**")
