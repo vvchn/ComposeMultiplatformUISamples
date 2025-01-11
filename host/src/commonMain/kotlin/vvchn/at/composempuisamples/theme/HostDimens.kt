@@ -9,6 +9,7 @@ internal data class HostDimens(
     /* Paddings */
     val horizontalPadding: Dp = 60.dp,
     val mainScreenColumnItemVerticalPadding: Dp = 18.dp,
+    val moveBackIconStartPadding: Dp = 30.dp,
 
     /* Dimensions */
     val headerHeight: Dp = 80.dp,

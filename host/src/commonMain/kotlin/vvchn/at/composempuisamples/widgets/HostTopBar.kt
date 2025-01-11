@@ -2,9 +2,11 @@ package vvchn.at.composempuisamples.widgets
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
@@ -32,6 +34,7 @@ internal fun HostTopBar(
         horizontalArrangement = if (isBtnVisible) Arrangement.Start else Arrangement.Center
     ) {
         if (isBtnVisible) {
+            Spacer(Modifier.width(HostTheme.hostDimens.moveBackIconStartPadding))
             IconButton(onClick = onBtnClicked) {
                 Icon(
                     contentDescription = null,
