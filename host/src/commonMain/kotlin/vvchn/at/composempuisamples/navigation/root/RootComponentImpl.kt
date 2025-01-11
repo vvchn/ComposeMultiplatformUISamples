@@ -11,11 +11,11 @@ import vvchn.at.composempuisamples.navigation.host.HostComponentImpl
 internal class RootComponentImpl(
     componentContext: ComponentContext
 ) : RootComponent, ComponentContext by componentContext {
-    private val hostNavigation = StackNavigation<RootConfig>()
+    private val rootNavigation = StackNavigation<RootConfig>()
 
     override val controllerState: Value<ChildStack<*, RootComponent.Direction>> =
         childStack(
-            source = hostNavigation,
+            source = rootNavigation,
             serializer = RootConfig.serializer(),
             initialStack = { listOf(RootConfig.Host) },
             handleBackButton = true,

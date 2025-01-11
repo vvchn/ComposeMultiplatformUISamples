@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples.screens.common
+package vvchn.at.composempuisamples.widgets
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable

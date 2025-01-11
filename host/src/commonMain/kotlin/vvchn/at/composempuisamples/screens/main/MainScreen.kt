@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,45 +17,44 @@ import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.stringResource
 import vvchn.at.composempuisamples.host.generated.resources.Res
 import vvchn.at.composempuisamples.host.generated.resources.about
-import vvchn.at.composempuisamples.host.generated.resources.app_name
 import vvchn.at.composempuisamples.host.generated.resources.sample
-import vvchn.at.composempuisamples.screens.misc.columnArrangement
 import vvchn.at.composempuisamples.theme.HostTheme
+import vvchn.at.composempuisamples.widgets.columnArrangement
 
 @Composable
-internal fun MainScreen(component: MainScreenComponent) {
+internal fun MainScreenRoot(component: MainScreenComponent) {
+    MainScreen(component::actionHandler)
+}
+
+@Composable
+internal fun MainScreen(actionHandler: (MainScreenAction) -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.surface
     ) {
-        Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-            Header(Modifier.fillMaxWidth().height(HostTheme.hostDimens.mainScreenHeaderHeight))
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        horizontal = HostTheme.hostDimens.columnHorizontalPadding,
-                        vertical = HostTheme.hostDimens.mainScreenHeaderHeight),
-                verticalArrangement = Arrangement.columnArrangement(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                ScreenSampleItem(stringResource(Res.string.sample, 1)) { }
-                ScreenSampleItem(stringResource(Res.string.sample, 2)) { }
-                ScreenSampleItem(stringResource(Res.string.about)) {}
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = HostTheme.hostDimens.headerHeight),
+            verticalArrangement = Arrangement.columnArrangement(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ScreenSampleItem(stringResource(Res.string.sample, 1)) {
+                actionHandler(
+                    MainScreenAction.OpenSample1
+                )
+            }
+            ScreenSampleItem(stringResource(Res.string.sample, 2)) {
+                actionHandler(
+                    MainScreenAction.OpenSample2
+                )
+            }
+            ScreenSampleItem(stringResource(Res.string.about)) {
+                actionHandler(
+                    MainScreenAction.OpenAboutPage
+                )
             }
         }
-    }
-}
-
-@Composable
-private fun Header(modifier: Modifier = Modifier) {
-    Box(modifier = modifier) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            textAlign = TextAlign.Center,
-            style = HostTheme.hostTypography.h2,
-            text = stringResource(Res.string.app_name)
-        )
     }
 }
 
@@ -68,8 +65,10 @@ private fun ScreenSampleItem(
 ) {
     Surface(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(HostTheme.hostDimens.sampleItemHeight)
+            .sizeIn(
+                maxWidth = HostTheme.hostDimens.sampleItemMaxWidth,
+                maxHeight = HostTheme.hostDimens.sampleItemMaxHeight
+            )
             .clickable { onClick() },
         shadowElevation = HostTheme.hostDimens.sampleItemShadowElevation,
         tonalElevation = HostTheme.hostDimens.sampleItemTonalElevation,
