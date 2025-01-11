@@ -56,6 +56,7 @@ class CmpConventionPlugin : Plugin<Project> {
                         implementation(composeDependencies.runtime)
                         implementation(composeDependencies.foundation)
                         implementation(composeDependencies.material3)
+                        implementation(composeDependencies.materialIconsExtended)
                         implementation(composeDependencies.ui)
                         implementation(composeDependencies.components.resources)
                         implementation(composeDependencies.components.uiToolingPreview)
