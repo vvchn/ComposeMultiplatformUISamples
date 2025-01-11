@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples.navigation.root
+package vvchn.at.composempuisamples.navigation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
@@ -6,14 +6,16 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
-import vvchn.at.composempuisamples.navigation.host.HostComponentImpl
+import vvchn.at.composempuisamples.mvi.Action
+import vvchn.at.composempuisamples.mvi.NavComponent
+import vvchn.at.composempuisamples.screens.host.HostComponent
 
-internal class RootComponentImpl(
+class RootComponent(
     componentContext: ComponentContext
-) : RootComponent, ComponentContext by componentContext {
+) : NavComponent<Action, Direction>(componentContext) {
     private val rootNavigation = StackNavigation<RootConfig>()
 
-    override val controllerState: Value<ChildStack<*, RootComponent.Direction>> =
+    override val controllerState: Value<ChildStack<*, Direction>> =
         childStack(
             source = rootNavigation,
             serializer = RootConfig.serializer(),
@@ -25,17 +27,17 @@ internal class RootComponentImpl(
     private fun direction(
         config: RootConfig,
         componentContext: ComponentContext
-    ): RootComponent.Direction =
+    ): Direction =
         when (config) {
-            RootConfig.Host -> RootComponent.Direction.HostRoot(
-                HostComponentImpl(
+            RootConfig.Host -> Direction.HostRoot(
+                HostComponent(
                     componentContext
                 )
             )
         }
 
     @Serializable
-    sealed class RootConfig {
+    private sealed class RootConfig {
         @Serializable
         data object Host : RootConfig()
     }

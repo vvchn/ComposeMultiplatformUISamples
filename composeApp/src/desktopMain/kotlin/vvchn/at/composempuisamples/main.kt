@@ -5,12 +5,12 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import vvchn.at.composempuisamples.navigation.root.provideRootComponent
+import vvchn.at.composempuisamples.navigation.RootComponent
 import vvchn.at.composempuisamples.utils.runOnUiThread
 
 fun main() {
-    val appNavController = runOnUiThread {
-        provideRootComponent(DefaultComponentContext(LifecycleRegistry()))
+    val appNavComponent = runOnUiThread {
+        RootComponent(DefaultComponentContext(LifecycleRegistry()))
     }
     application {
         val windowState = rememberWindowState()
@@ -20,7 +20,7 @@ fun main() {
             state = windowState,
             title = "Compose Multiplatform UI Samples",
         ) {
-            App(appNavController)
+            App(appNavComponent)
         }
     }
 }

@@ -7,13 +7,13 @@ struct iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(root: appDelegate.root)
+            ContentView(appNavComponent: appDelegate.appNavComponent)
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    let root: HostComponent = provideRootComponent(
+    let appNavComponent: RootComponent = RootComponent(
         componentContext: DefaultComponentContext(lifecycle: ApplicationLifecycle())
     )
 }

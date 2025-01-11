@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples.navigation.host
+package vvchn.at.composempuisamples.screens.host
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
@@ -8,17 +8,16 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
+import vvchn.at.composempuisamples.mvi.NavComponent
 import vvchn.at.composempuisamples.screens.main.MainScreenComponent
 import vvchn.at.composempuisamples.screens.todo.TodoScreenComponent
 
-internal class HostComponentImpl(
+class HostComponent(
     componentContext: ComponentContext,
-) : HostComponent, ComponentContext by componentContext {
+) : NavComponent<HostContentAction, HostChild>(componentContext) {
     private val hostNavigation = StackNavigation<HostConfig>()
 
-    override fun pop() = hostNavigation.pop()
-
-    override val controllerState: Value<ChildStack<*, HostComponent.HostChild>> =
+    override val controllerState: Value<ChildStack<*, HostChild>> =
         childStack(
             source = hostNavigation,
             serializer = HostConfig.serializer(),
@@ -30,11 +29,11 @@ internal class HostComponentImpl(
     private fun hostChild(
         config: HostConfig,
         componentContext: ComponentContext
-    ): HostComponent.HostChild =
+    ): HostChild =
         when (config) {
             // TODO: Screens
             is HostConfig.About -> TODO()
-            is HostConfig.Main -> HostComponent.HostChild.MainChild(
+            is HostConfig.Main -> HostChild.MainChild(
                 MainScreenComponent(
                     navigateToAbout = { hostNavigation.pushNew(HostConfig.Todo("About")) },
                     navigateToSample1 = { hostNavigation.pushNew(HostConfig.Todo("Sample1")) },
@@ -42,7 +41,7 @@ internal class HostComponentImpl(
                     componentContext = componentContext
                 )
             )
-            is HostConfig.Todo -> HostComponent.HostChild.TodoChild(
+            is HostConfig.Todo -> HostChild.TodoChild(
                 TodoScreenComponent(
                     text = config.screenName,
                     componentContext = componentContext
@@ -50,8 +49,14 @@ internal class HostComponentImpl(
             )
         }
 
+    override fun handleIntent(intent: HostContentAction) {
+        return when(intent) {
+            HostContentAction.MoveBackByPressingTopBarBtn -> hostNavigation.pop()
+        }
+    }
+
     @Serializable
-    internal sealed class HostConfig {
+    private sealed class HostConfig {
         @Serializable
         data object Main : HostConfig()
         data object About : HostConfig()

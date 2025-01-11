@@ -4,14 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.arkivanov.decompose.defaultComponentContext
-import vvchn.at.composempuisamples.navigation.root.provideRootComponent
+import vvchn.at.composempuisamples.navigation.RootComponent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val appNavController = provideRootComponent(defaultComponentContext())
+        val appNavComponent = RootComponent(defaultComponentContext())
         setContent {
-            App(appNavController)
+            App(appNavComponent)
         }
     }
 }

@@ -1,4 +1,4 @@
-package vvchn.at.composempuisamples.navigation.host
+package vvchn.at.composempuisamples.screens.host
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -24,16 +24,16 @@ fun HostContent(hostComponent: HostComponent) {
         Scaffold(
             topBar = {
                 HostTopBar(
-                    isBtnVisible = (routerState.active.instance !is HostComponent.HostChild.MainChild),
-                    onBtnClicked = hostComponent::pop
+                    isBtnVisible = (routerState.active.instance !is HostChild.MainChild),
+                    onBtnClicked = { hostComponent.actionHandler(HostContentAction.MoveBackByPressingTopBarBtn) }
                 )
             }
         ) {
             Children(stack = routerState) { child ->
                 when (val instance = child.instance) {
-                    is HostComponent.HostChild.AboutChild -> TODO()
-                    is HostComponent.HostChild.MainChild -> MainScreenRoot(instance.component)
-                    is HostComponent.HostChild.TodoChild -> TodoScreenRoot(instance.component)
+                    is HostChild.AboutChild -> TODO()
+                    is HostChild.MainChild -> MainScreenRoot(instance.component)
+                    is HostChild.TodoChild -> TodoScreenRoot(instance.component)
                 }
             }
         }
