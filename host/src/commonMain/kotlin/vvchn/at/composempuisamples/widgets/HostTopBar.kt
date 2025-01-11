@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -29,7 +30,8 @@ internal fun HostTopBar(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = HostTheme.hostDimens.headerHeight),
+            .heightIn(min = HostTheme.hostDimens.headerHeight)
+            .statusBarsPadding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = if (isBtnVisible) Arrangement.Start else Arrangement.Center
     ) {
