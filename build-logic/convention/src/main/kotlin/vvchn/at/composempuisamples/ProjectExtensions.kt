@@ -25,8 +25,5 @@ internal val Project.androidMinSdk: Int
 internal val Project.androidTargetSdk: Int
     get() = libs.versions.androidTargetSdk.get().toInt()
 
-internal val Project.winVersion: String
-    get() = libs.versions.winVersion.get()
-
 internal val Project.detektVersion: String
     get() = libs.versions.detekt.get()
