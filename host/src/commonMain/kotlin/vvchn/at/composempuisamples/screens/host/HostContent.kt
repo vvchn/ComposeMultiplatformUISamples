@@ -23,9 +23,9 @@ fun HostContent(hostComponent: HostComponent) {
         topBar = {
             HostTopBar(
                 modifier = Modifier
+                    .statusBarsPadding()
                     .fillMaxWidth()
-                    .heightIn(min = HostTheme.hostDimens.headerHeight)
-                    .statusBarsPadding(),
+                    .heightIn(min = HostTheme.hostDimens.headerHeight),
                 isBtnVisible = (routerState.active.instance !is HostChild.MainChild),
                 onBtnClicked = { hostComponent.actionHandler(
                     HostContentAction.MoveBackByPressingTopBarBtn
