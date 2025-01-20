@@ -3,10 +3,7 @@ package vvchn.at.composempuisamples.widgets
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -24,14 +21,12 @@ import vvchn.at.composempuisamples.theme.HostTheme
 
 @Composable
 internal fun HostTopBar(
+    modifier: Modifier = Modifier,
     isBtnVisible: Boolean,
-    onBtnClicked: () -> Unit
+    onBtnClicked: () -> Unit = {}
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = HostTheme.hostDimens.headerHeight)
-            .statusBarsPadding(),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = if (isBtnVisible) Arrangement.Start else Arrangement.Center
     ) {
