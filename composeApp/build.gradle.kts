@@ -52,10 +52,12 @@ android {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":common"))
             implementation(project(":host"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.flatlaf)
         }
     }
 }
@@ -68,6 +70,7 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = defaultName
             packageVersion = libs.versions.winVersion.get()
+            macOS.apply { jvmArgs("-Dapple.awt.application.appearance=system") }
         }
     }
 }

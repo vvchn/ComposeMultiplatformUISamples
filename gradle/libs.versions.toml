@@ -32,6 +32,9 @@ haze = "1.1.0"
 #Navigation
 decompose = "3.2.2"
 
+#Desktop
+flatlaf = "3.5.4"
+
 #Android
 agp = "8.5.2"
 android-splashscreen = "1.0.1"
@@ -77,6 +80,9 @@ compose-haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 #Navigation
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose-multiplatform = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+
+#Desktop
+flatlaf = { group = "com.formdev", name = "flatlaf", version.ref = "flatlaf" }
 
 #Android
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
