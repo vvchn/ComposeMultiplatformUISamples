@@ -12,9 +12,8 @@ internal data class HostDimens(
     val moveBackIconStartPadding: Dp = 30.dp,
 
     /* Dimensions */
-    val headerHeight: Dp = 80.dp,
-    val sampleItemMaxWidth: Dp = 400.dp,
-    val sampleItemMaxHeight: Dp = 80.dp,
+    val headerHeight: Dp = 60.dp,
+    val sampleItemHeight: Dp = 80.dp,
     val sampleItemShadowElevation: Dp = 4.dp,
     val sampleItemTonalElevation: Dp = 2.dp,
     val todoScreenSpacer: Dp = 10.dp,

@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.stringResource
 import vvchn.at.composempuisamples.host.generated.resources.Res
@@ -23,6 +24,7 @@ import vvchn.at.composempuisamples.theme.HostTheme
 internal fun HostTopBar(
     modifier: Modifier = Modifier,
     isBtnVisible: Boolean,
+    onTextWidthChanged: (Int) -> Unit = {},
     onBtnClicked: () -> Unit = {}
 ) {
     Row(
@@ -42,6 +44,7 @@ internal fun HostTopBar(
         }
         else {
             Text(
+                modifier = Modifier.onSizeChanged { onTextWidthChanged(it.width) },
                 textAlign = TextAlign.Center,
                 style = HostTheme.hostTypography.h2,
                 text = stringResource(Res.string.app_name)

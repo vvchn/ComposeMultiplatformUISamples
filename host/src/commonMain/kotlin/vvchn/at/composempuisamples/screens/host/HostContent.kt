@@ -1,12 +1,16 @@
 package vvchn.at.composempuisamples.screens.host
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
@@ -14,10 +18,12 @@ import vvchn.at.composempuisamples.screens.main.MainScreenRoot
 import vvchn.at.composempuisamples.screens.todo.TodoScreenRoot
 import vvchn.at.composempuisamples.theme.HostTheme
 import vvchn.at.composempuisamples.widgets.HostTopBar
+import vvchn.at.composempuisamples.widgets.absoluteHorizontalPadding
 
 @Composable
 fun HostContent(hostComponent: HostComponent) {
     val routerState by hostComponent.controllerState.subscribeAsState()
+    var headerTextWidth by remember { mutableIntStateOf(0) }
 
     Scaffold(
         topBar = {
@@ -25,11 +31,14 @@ fun HostContent(hostComponent: HostComponent) {
                 modifier = Modifier
                     .statusBarsPadding()
                     .fillMaxWidth()
-                    .heightIn(min = HostTheme.hostDimens.headerHeight),
+                    .height(HostTheme.hostDimens.headerHeight),
                 isBtnVisible = (routerState.active.instance !is HostChild.MainChild),
-                onBtnClicked = { hostComponent.actionHandler(
-                    HostContentAction.MoveBackByPressingTopBarBtn
-                ) }
+                onTextWidthChanged = { headerTextWidth = it },
+                onBtnClicked = {
+                    hostComponent.actionHandler(
+                        HostContentAction.MoveBackByPressingTopBarBtn
+                    )
+                }
             )
         }
     ) { paddingValues ->
@@ -39,7 +48,10 @@ fun HostContent(hostComponent: HostComponent) {
         ) { child ->
             when (val instance = child.instance) {
                 is HostChild.AboutChild -> TODO()
-                is HostChild.MainChild -> MainScreenRoot(instance.component)
+                is HostChild.MainChild -> MainScreenRoot(
+                    modifier = Modifier.fillMaxSize().absoluteHorizontalPadding(headerTextWidth),
+                    component = instance.component
+                )
                 is HostChild.TodoChild -> TodoScreenRoot(instance.component)
             }
         }
