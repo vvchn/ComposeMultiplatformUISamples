@@ -4,16 +4,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.stringResource
 import vvchn.at.composempuisamples.host.generated.resources.Res
 import vvchn.at.composempuisamples.host.generated.resources.about
@@ -31,27 +28,22 @@ internal fun MainScreenRoot(
 
 @Composable
 internal fun MainScreen(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     actionHandler: (MainScreenAction) -> Unit
 ) {
-    Surface(
+    Column(
         modifier = modifier,
-        color = MaterialTheme.colorScheme.surface
+        verticalArrangement = Arrangement.columnArrangement(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.columnArrangement(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            ScreenSampleItem(stringResource(Res.string.sample, 1)) {
-                actionHandler(MainScreenAction.OpenSample1)
-            }
-            ScreenSampleItem(stringResource(Res.string.sample, 2)) {
-                actionHandler(MainScreenAction.OpenSample2)
-            }
-            ScreenSampleItem(stringResource(Res.string.about)) {
-                actionHandler(MainScreenAction.OpenAboutPage)
-            }
+        ScreenSampleItem(stringResource(Res.string.sample, 1)) {
+            actionHandler(MainScreenAction.OpenSample1)
+        }
+        ScreenSampleItem(stringResource(Res.string.sample, 2)) {
+            actionHandler(MainScreenAction.OpenSample2)
+        }
+        ScreenSampleItem(stringResource(Res.string.about)) {
+            actionHandler(MainScreenAction.OpenAboutPage)
         }
     }
 }
@@ -62,15 +54,16 @@ private fun ScreenSampleItem(
     onClick: () -> Unit
 ) {
     Surface(
-        modifier = Modifier.clickable { onClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(HostTheme.hostDimens.sampleItemHeight)
+            .clickable { onClick() },
         shadowElevation = HostTheme.hostDimens.sampleItemShadowElevation,
         tonalElevation = HostTheme.hostDimens.sampleItemTonalElevation,
         shape = HostTheme.hostShapes.sampleItemShape
     ) {
-        Box(modifier = Modifier.fillMaxWidth().height(HostTheme.hostDimens.sampleItemHeight)) {
+        Box(contentAlignment = Alignment.Center) {
             Text(
-                modifier = Modifier.align(Alignment.Center),
-                textAlign = TextAlign.Center,
                 style = HostTheme.hostTypography.h4,
                 text = text
             )
