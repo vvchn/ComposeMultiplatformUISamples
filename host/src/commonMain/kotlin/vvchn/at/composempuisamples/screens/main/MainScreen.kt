@@ -64,7 +64,7 @@ private fun ScreenSampleItem(
     ) {
         Box(contentAlignment = Alignment.Center) {
             Text(
-                style = HostTheme.hostTypography.h4,
+                style = HostTheme.hostTypography.h4SemiBold,
                 text = text
             )
         }

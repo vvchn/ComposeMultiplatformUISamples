@@ -1,7 +1,7 @@
 [versions]
 #Convention
 java = "17"
-androidVersion = "2024.0.1"
+androidVersion = "2025.0.1"
 androidVersionCode = "1"
 androidMinSdk = "26"
 androidTargetSdk = "34"

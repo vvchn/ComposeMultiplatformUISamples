@@ -14,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import vvchn.at.composempuisamples.screens.about.AboutScreenRoot
 import vvchn.at.composempuisamples.screens.main.MainScreenRoot
 import vvchn.at.composempuisamples.screens.todo.TodoScreenRoot
 import vvchn.at.composempuisamples.theme.HostTheme
@@ -47,11 +48,19 @@ fun HostContent(hostComponent: HostComponent) {
             stack = routerState
         ) { child ->
             when (val instance = child.instance) {
-                is HostChild.AboutChild -> TODO()
+                is HostChild.AboutChild -> AboutScreenRoot(
+                    modifier = Modifier.fillMaxSize().padding(
+                        top = HostTheme.hostDimens.aboutScreenTopPadding,
+                        bottom = HostTheme.hostDimens.aboutScreenBottomPadding
+                    ),
+                    component = instance.component
+                )
+
                 is HostChild.MainChild -> MainScreenRoot(
                     modifier = Modifier.fillMaxSize().absoluteHorizontalPadding(headerTextWidth),
                     component = instance.component
                 )
+
                 is HostChild.TodoChild -> TodoScreenRoot(instance.component)
             }
         }

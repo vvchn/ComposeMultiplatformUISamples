@@ -2,4 +2,6 @@
     <string name="about">О приложении</string>
     <string name="sample">Пример %1$d</string>
     <string name="unknown_version">Неизвестная версия</string>
+    <string name="version">Версия</string>
+    <string name="licenses">Лицензии открытого ПО</string>
 </resources>

@@ -8,6 +8,6 @@ import vvchn.at.composempuisamples.theme.HostTheme
 @Suppress("NOTHING_TO_INLINE", "KotlinRedundantDiagnosticSuppress")
 @Composable
 internal inline fun Arrangement.columnArrangement() = spacedBy(
-    HostTheme.hostDimens.mainScreenColumnItemVerticalPadding,
+    HostTheme.hostDimens.columnItemVerticalPadding,
     Alignment.CenterVertically
 )

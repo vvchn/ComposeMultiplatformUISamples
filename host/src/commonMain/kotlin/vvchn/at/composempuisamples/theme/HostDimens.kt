@@ -7,9 +7,10 @@ import androidx.compose.ui.unit.dp
 @Immutable
 internal data class HostDimens(
     /* Paddings */
-    val horizontalPadding: Dp = 60.dp,
-    val mainScreenColumnItemVerticalPadding: Dp = 18.dp,
-    val moveBackIconStartPadding: Dp = 30.dp,
+    val aboutScreenBottomPadding: Dp = 60.dp,
+    val aboutScreenTopPadding: Dp = 20.dp,
+    val columnItemVerticalPadding: Dp = 18.dp,
+    val moveBackIconStartPadding: Dp = 10.dp,
 
     /* Dimensions */
     val headerHeight: Dp = 60.dp,

@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">Compose Multiplatform UI Samples</string>
+    <string name="app_name_short" translatable="false">Compose MP UI Samples</string>
     <string name="about">About</string>
     <string name="sample">Sample %1$d</string>
     <string name="startComment" translatable="false">/* TODO:</string>
     <string name="endComment" translatable="false"> */</string>
     <string name="unknown_version">Unknown version</string>
-    <string name="github_link" translatable="false">https://github.com/vvchn</string>
-    <string name="at_vvchn" translatable="false">\@vvchn</string>
+    <string name="at_vvchn" translatable="false">@vvchn</string>
+    <string name="version">Version</string>
+    <string name="licenses">Open source licenses</string>
 </resources>

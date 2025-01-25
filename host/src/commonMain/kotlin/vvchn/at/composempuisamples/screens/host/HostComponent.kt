@@ -9,6 +9,7 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import vvchn.at.composempuisamples.mvi.NavComponent
+import vvchn.at.composempuisamples.screens.about.AboutScreenComponent
 import vvchn.at.composempuisamples.screens.main.MainScreenComponent
 import vvchn.at.composempuisamples.screens.todo.TodoScreenComponent
 
@@ -31,11 +32,12 @@ class HostComponent(
         componentContext: ComponentContext
     ): HostChild =
         when (config) {
-            // TODO: Screens
-            is HostConfig.About -> TODO()
+            is HostConfig.About -> HostChild.AboutChild(
+                AboutScreenComponent(componentContext = componentContext)
+            )
             is HostConfig.Main -> HostChild.MainChild(
                 MainScreenComponent(
-                    navigateToAbout = { hostNavigation.pushNew(HostConfig.Todo("About")) },
+                    navigateToAbout = { hostNavigation.pushNew(HostConfig.About) },
                     navigateToSample1 = { hostNavigation.pushNew(HostConfig.Todo("Sample1")) },
                     navigateToSample2 = { hostNavigation.pushNew(HostConfig.Todo("Sample2")) },
                     componentContext = componentContext
@@ -57,9 +59,8 @@ class HostComponent(
 
     @Serializable
     private sealed class HostConfig {
-        @Serializable
-        data object Main : HostConfig()
-        data object About : HostConfig()
-        data class Todo(val screenName: String) : HostConfig()
+        @Serializable data object Main : HostConfig()
+        @Serializable data object About : HostConfig()
+        @Serializable data class Todo(val screenName: String) : HostConfig()
     }
 }
