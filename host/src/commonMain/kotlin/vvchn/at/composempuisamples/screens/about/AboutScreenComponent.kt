@@ -1,22 +1,20 @@
 package vvchn.at.composempuisamples.screens.about
 
-import androidx.compose.runtime.Immutable
 import com.arkivanov.decompose.ComponentContext
 import vvchn.at.composempuisamples.misc.Environment
 import vvchn.at.composempuisamples.misc.getEnvironment
-import vvchn.at.composempuisamples.mvi.Action
 import vvchn.at.composempuisamples.mvi.Component
 
 class AboutScreenComponent(
+    private val showLicense: () -> Unit,
     componentContext: ComponentContext
-): Component<Action>(componentContext) {
-    // TODO: State?
+): Component<AboutScreenAction>(componentContext) {
     val environment: Environment = getEnvironment()
-    val urls = Urls()
-}
+    val githubLink: String = "https://github.com/vvchn"
 
-@Immutable
-data class Urls(
-    val githubLink: String = "https://github.com/vvchn",
-    val licenseLink: String = "https://www.anekdot.ru/id/1192721/"
-)
+    override fun handleIntent(intent: AboutScreenAction) {
+        return when (intent) {
+            AboutScreenAction.ShowLicense -> showLicense()
+        }
+    }
+}

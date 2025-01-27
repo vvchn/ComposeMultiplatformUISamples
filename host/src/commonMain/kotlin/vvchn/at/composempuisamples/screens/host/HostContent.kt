@@ -49,10 +49,13 @@ fun HostContent(hostComponent: HostComponent) {
         ) { child ->
             when (val instance = child.instance) {
                 is HostChild.AboutChild -> AboutScreenRoot(
-                    modifier = Modifier.fillMaxSize().padding(
-                        top = HostTheme.hostDimens.aboutScreenTopPadding,
-                        bottom = HostTheme.hostDimens.aboutScreenBottomPadding
-                    ),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(
+                            top = HostTheme.hostDimens.aboutScreenTopPadding,
+                            bottom = HostTheme.hostDimens.aboutScreenBottomPadding
+                        )
+                        .absoluteHorizontalPadding(headerTextWidth),
                     component = instance.component
                 )
 

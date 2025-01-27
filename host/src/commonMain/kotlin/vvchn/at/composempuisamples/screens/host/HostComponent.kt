@@ -33,7 +33,10 @@ class HostComponent(
     ): HostChild =
         when (config) {
             is HostConfig.About -> HostChild.AboutChild(
-                AboutScreenComponent(componentContext = componentContext)
+                AboutScreenComponent(
+                    showLicense = { hostNavigation.pushNew(HostConfig.Todo("License")) },
+                    componentContext = componentContext
+                )
             )
             is HostConfig.Main -> HostChild.MainChild(
                 MainScreenComponent(

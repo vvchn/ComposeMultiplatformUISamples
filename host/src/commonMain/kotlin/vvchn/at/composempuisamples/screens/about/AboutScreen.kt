@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import org.jetbrains.compose.resources.stringResource
 import vvchn.at.composempuisamples.host.generated.resources.Res
 import vvchn.at.composempuisamples.host.generated.resources.app_name_short
@@ -28,26 +29,30 @@ internal fun AboutScreenRoot(
     modifier: Modifier = Modifier,
     component: AboutScreenComponent
 ) {
+    val uriHandler = LocalUriHandler.current
+
     AboutScreen(
-        modifier,
-        component.environment,
-        component.urls
+        modifier = modifier,
+        environment = component.environment,
+        openGithub = { uriHandler.openUri(component.githubLink) },
+        showLicense = { (component::actionHandler)(AboutScreenAction.ShowLicense) }
     )
 }
 
 @Composable
-internal fun AboutScreen(modifier: Modifier, environment: Environment, urls: Urls) {
-    val uriHandler = LocalUriHandler.current
+internal fun AboutScreen(
+    modifier: Modifier,
+    environment: Environment,
+    openGithub: () -> Unit,
+    showLicense: () -> Unit
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         AppInfoElement(environment)
-        Ownership(
-            openGithub = { uriHandler.openUri(urls.githubLink) },
-            openLicense = { uriHandler.openUri(urls.licenseLink) }
-        )
+        Ownership(openGithub, showLicense)
     }
 }
 
@@ -58,18 +63,25 @@ private fun AppInfoElement(environment: Environment) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            textAlign = TextAlign.Center,
             style = HostTheme.hostTypography.h1,
             text = stringResource(Res.string.app_name_short)
         )
         Text(
             textAlign = TextAlign.Center,
             style = HostTheme.hostTypography.h4,
-            text = environment.systemInfo
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            text = environment
+                .systemInfo
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
         )
         if (environment.sdkInfo != null) {
             Text(
                 textAlign = TextAlign.Center,
                 style = HostTheme.hostTypography.h4,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
                 text = environment.sdkInfo!!
             )
         }
