@@ -10,7 +10,7 @@ import vvchn.at.composempuisamples.widgets.HostTopBar
 
 @CreatePreviews
 @Composable
-fun HostTopBarPreview() {
+private fun HostTopBarBtnPreview() {
     HostTheme {
         Surface {
             HostTopBar(
@@ -18,6 +18,21 @@ fun HostTopBarPreview() {
                     .fillMaxWidth()
                     .heightIn(min = HostTheme.hostDimens.headerHeight),
                 isBtnVisible = true
+            )
+        }
+    }
+}
+
+@CreatePreviews
+@Composable
+private fun HostTopBarTextPreview() {
+    HostTheme {
+        Surface {
+            HostTopBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = HostTheme.hostDimens.headerHeight),
+                isBtnVisible = false
             )
         }
     }
