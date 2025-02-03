@@ -8,7 +8,8 @@ import platform.UIKit.UIDevice
 data class IOSEnvironment(
     override val systemInfo: String = "${UIDevice.currentDevice.model} ${UIDevice.currentDevice.systemVersion}",
     override val sdkInfo: String? = null,
-    override val appVersion: String = "2025.0.1"
+    override val appVersion: String = "2025.0.1",
+    override val isDesktop: Boolean = false
 ) : Environment
 
 @Stable

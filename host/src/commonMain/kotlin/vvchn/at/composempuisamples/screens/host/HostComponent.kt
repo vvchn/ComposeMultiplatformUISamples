@@ -10,6 +10,7 @@ import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import vvchn.at.composempuisamples.mvi.NavComponent
 import vvchn.at.composempuisamples.screens.about.AboutScreenComponent
+import vvchn.at.composempuisamples.screens.about.license.LicenseScreenComponent
 import vvchn.at.composempuisamples.screens.main.MainScreenComponent
 import vvchn.at.composempuisamples.screens.todo.TodoScreenComponent
 
@@ -34,7 +35,7 @@ class HostComponent(
         when (config) {
             is HostConfig.About -> HostChild.AboutChild(
                 AboutScreenComponent(
-                    showLicense = { hostNavigation.pushNew(HostConfig.Todo("License")) },
+                    showLicense = { hostNavigation.pushNew(HostConfig.License) },
                     componentContext = componentContext
                 )
             )
@@ -52,6 +53,10 @@ class HostComponent(
                     componentContext = componentContext
                 )
             )
+
+            is HostConfig.License -> HostChild.LicenseChild(
+                LicenseScreenComponent(componentContext)
+            )
         }
 
     override fun handleIntent(intent: HostContentAction) {
@@ -61,9 +66,10 @@ class HostComponent(
     }
 
     @Serializable
-    private sealed class HostConfig {
-        @Serializable data object Main : HostConfig()
-        @Serializable data object About : HostConfig()
-        @Serializable data class Todo(val screenName: String) : HostConfig()
+    private sealed interface HostConfig {
+        @Serializable data object Main : HostConfig
+        @Serializable data object About : HostConfig
+        @Serializable data class Todo(val screenName: String) : HostConfig
+        @Serializable data object License : HostConfig
     }
 }

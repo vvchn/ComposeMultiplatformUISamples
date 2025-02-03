@@ -37,8 +37,8 @@ class RootComponent(
         }
 
     @Serializable
-    private sealed class RootConfig {
+    private sealed interface RootConfig {
         @Serializable
-        data object Host : RootConfig()
+        data object Host : RootConfig
     }
 }

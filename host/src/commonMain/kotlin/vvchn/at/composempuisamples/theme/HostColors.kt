@@ -10,6 +10,7 @@ internal data class HostColors(
     val secondary: Color,
     val tertiary: Color,
     val todo: Color,
+    val licenseBackground: Color,
 )
 
 @Immutable
@@ -33,6 +34,7 @@ internal val hostLightThemeColors = HostColors(
     secondary = LightPalette.purpleGrey40,
     tertiary = LightPalette.pink40,
     todo = Color.Green,
+    licenseBackground = Color.White,
 )
 
 @Stable
@@ -41,4 +43,5 @@ internal val hostDarkThemeColors = HostColors(
     secondary = DarkPalette.purpleGrey80,
     tertiary = DarkPalette.pink80,
     todo = DarkPalette.acidGreen,
+    licenseBackground = Color.Black
 )

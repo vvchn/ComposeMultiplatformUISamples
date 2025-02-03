@@ -7,7 +7,8 @@ import androidx.compose.runtime.Stable
 data class JVMEnvironment(
     override val systemInfo: String = getSystemInfo(),
     override val sdkInfo: String? = "Java ${System.getProperty("java.version")} ${System.getProperty("java.vendor")}",
-    override val appVersion: String = "2025.0.1"
+    override val appVersion: String = "2025.0.1",
+    override val isDesktop: Boolean = true
 ) : Environment
 
 @Stable

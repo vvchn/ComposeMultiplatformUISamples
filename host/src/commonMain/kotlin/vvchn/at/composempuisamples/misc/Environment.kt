@@ -7,6 +7,7 @@ interface Environment {
     val systemInfo: String
     val sdkInfo: String?
     val appVersion: String
+    val isDesktop: Boolean
 }
 
 @Stable

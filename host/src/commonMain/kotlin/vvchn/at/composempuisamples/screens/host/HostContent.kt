@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import vvchn.at.composempuisamples.screens.about.AboutScreenRoot
+import vvchn.at.composempuisamples.screens.about.license.LicenseScreenRoot
 import vvchn.at.composempuisamples.screens.main.MainScreenRoot
 import vvchn.at.composempuisamples.screens.todo.TodoScreenRoot
 import vvchn.at.composempuisamples.theme.HostTheme
@@ -65,6 +66,10 @@ fun HostContent(hostComponent: HostComponent) {
                 )
 
                 is HostChild.TodoChild -> TodoScreenRoot(instance.component)
+                is HostChild.LicenseChild -> LicenseScreenRoot(
+                    modifier = Modifier.fillMaxSize(),
+                    component = instance.component
+                )
             }
         }
     }

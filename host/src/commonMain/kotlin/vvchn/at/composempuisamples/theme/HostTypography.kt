@@ -18,7 +18,9 @@ internal data class HostTypography(
     val h3SemiBold: TextStyle = h3.copy(fontWeight = FontWeight.SemiBold),
     val h4: TextStyle = hostTextStyle(fontSize = 16.sp, fontWeight = FontWeight.Light),
     val h4SemiBold: TextStyle = hostTextStyle(fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
-    val h5: TextStyle = hostTextStyle(fontSize = 14.sp, fontWeight = FontWeight.Light),
+    val h5Light: TextStyle = hostTextStyle(fontSize = 14.sp, fontWeight = FontWeight.Light),
+    val h5: TextStyle = hostTextStyle(fontSize = 14.sp),
+    val h6: TextStyle = hostTextStyle(fontSize = 10.sp, fontWeight = FontWeight.Normal),
 )
 
 @Stable

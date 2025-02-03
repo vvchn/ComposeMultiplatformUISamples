@@ -11,6 +11,7 @@ internal data class HostDimens(
     val aboutScreenTopPadding: Dp = 20.dp,
     val columnItemVerticalPadding: Dp = 18.dp,
     val moveBackIconStartPadding: Dp = 10.dp,
+    val scrollBarOffset: Dp = 6.dp,
 
     /* Dimensions */
     val headerHeight: Dp = 60.dp,
@@ -19,4 +20,5 @@ internal data class HostDimens(
     val sampleItemTonalElevation: Dp = 2.dp,
     val todoScreenSpacer: Dp = 10.dp,
     val moveBackIconSize: Dp = 30.dp,
+    val scrollBarWidth: Dp = 10.dp,
 )

@@ -8,7 +8,8 @@ import androidx.compose.runtime.Stable
 data class AndroidEnvironment(
     override val systemInfo: String = "${Build.MANUFACTURER} ${Build.MODEL}",
     override val sdkInfo: String? = "Android SDK ${Build.VERSION.SDK_INT}",
-    override val appVersion: String = "2025.0.1"
+    override val appVersion: String = "2025.0.1",
+    override val isDesktop: Boolean = false
 ) : Environment
 
 @Stable

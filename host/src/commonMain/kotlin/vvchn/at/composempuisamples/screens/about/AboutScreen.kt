@@ -86,7 +86,7 @@ private fun AppInfoElement(environment: Environment) {
             )
         }
         Text(
-            style = HostTheme.hostTypography.h5,
+            style = HostTheme.hostTypography.h5Light,
             text = "${stringResource(Res.string.version)} ${environment.appVersion}"
         )
     }
