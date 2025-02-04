@@ -1,11 +1,8 @@
 package vvchn.at.composempuisamples.widgets
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.TweenSpec
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
@@ -17,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,10 +23,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import vvchn.at.composempuisamples.theme.HostTheme
 import kotlin.math.roundToInt
@@ -106,6 +104,15 @@ private fun DefaultVScrollBar(
     var isScrollVisible by remember { mutableStateOf(false) }
     val isHovered by interactionSource.collectIsHoveredAsState()
 
+    val measurePolicy = remember(scrollState) { vScrollMeasurePolicy(scrollState) }
+
+    val radius = HostTheme.hostDimens.scrollBarCornerRadius
+
+    val color by animateColorAsState(
+        targetValue = if (isScrollVisible) HostTheme.hostColors.scrollBoxColor else Color.Transparent,
+        animationSpec = if (isScrollVisible) TweenSpec(0) else TweenSpec(durationMillis = SCROLL_BOX_FADEOUT_DURATION)
+    )
+
     LaunchedEffect(key1 = scrollState.isScrollInProgress, key2 = isHovered) {
         if (scrollState.isScrollInProgress || isHovered) {
             isScrollVisible = true
@@ -115,36 +122,57 @@ private fun DefaultVScrollBar(
         }
     }
 
-    Box(modifier.hoverable(interactionSource)) {
-        AnimatedVisibility(
-            modifier = modifier,
-            visible = isScrollVisible || isHovered,
-            enter = EnterTransition.None,
-            exit = fadeOut(animationSpec = tween(SCROLL_BOX_FADEOUT_DURATION))
-        ) {
-            Layout(
-                content = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.Gray, shape = RoundedCornerShape(4.dp))
-                    )
-                }
-            ) { measurable, constraints ->
-                val maxHeightFloat = constraints.maxHeight.toFloat()
-                val totalContentHeightPx = scrollState.maxValue + maxHeightFloat
+    Layout(
+        {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .drawBehind {
+                        drawRoundRect(
+                            cornerRadius = CornerRadius(
+                                radius.toPx(),
+                                radius.toPx()
+                            ),
+                            color = color,
+                        )
+                    }
+            )
+        },
+        modifier.hoverable(interactionSource),
+        measurePolicy
+    )
+}
 
-                val scrollbarHeight =
-                    ((maxHeightFloat / totalContentHeightPx) * maxHeightFloat).roundToInt()
-                val scrollbarOffsetPx =
-                    ((scrollState.value.toFloat() / scrollState.maxValue) * (maxHeightFloat - scrollbarHeight)).roundToInt()
+private fun vScrollMeasurePolicy(scrollState: ScrollState): MeasurePolicy {
+    return MeasurePolicy { measurable, constraints ->
+        val maxHeightFloat: Float
+        val scrollbarHeight: Int
+        val scrollbarOffset: Int
+        val totalContentHeightFloat: Float
 
-                val scrollBarConstraints = constraints.copy(minHeight = scrollbarHeight)
-                val placeable = measurable.first().measure(scrollBarConstraints)
-                layout(constraints.maxWidth, constraints.maxHeight) {
-                    placeable.placeRelative(x = 0, y = scrollbarOffsetPx)
-                }
-            }
+        if (scrollState.maxValue == 0) {
+            scrollbarHeight = 0
+            scrollbarOffset = 0
+        }
+        else {
+            maxHeightFloat = constraints.maxHeight.toFloat()
+
+            totalContentHeightFloat = scrollState.maxValue + maxHeightFloat
+
+            scrollbarHeight =
+                ((maxHeightFloat / totalContentHeightFloat) * maxHeightFloat).roundToInt()
+
+            scrollbarOffset =
+                ((scrollState.value / scrollState.maxValue.toFloat()) *
+                        (maxHeightFloat - scrollbarHeight)).roundToInt()
+        }
+
+
+        val scrollBarConstraints = constraints.copy(minHeight = scrollbarHeight)
+        val placeable = measurable.first().measure(scrollBarConstraints)
+
+        layout(constraints.maxWidth, constraints.maxHeight) {
+            placeable.placeRelativeWithLayer(x = 0, y = scrollbarOffset)
         }
     }
 }

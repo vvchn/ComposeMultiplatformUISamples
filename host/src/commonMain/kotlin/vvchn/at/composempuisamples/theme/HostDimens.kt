@@ -21,4 +21,5 @@ internal data class HostDimens(
     val todoScreenSpacer: Dp = 10.dp,
     val moveBackIconSize: Dp = 30.dp,
     val scrollBarWidth: Dp = 10.dp,
+    val scrollBarCornerRadius: Dp = 6.dp,
 )
