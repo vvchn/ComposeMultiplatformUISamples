@@ -4,45 +4,46 @@ java = "17"
 androidVersion = "2025.0.1"
 androidVersionCode = "1"
 androidMinSdk = "26"
-androidTargetSdk = "34"
-androidCompileSdk = "34"
+androidTargetSdk = "35"
+androidCompileSdk = "35"
 winVersion = "1.0.0"
 
 #Kotlin
-kotlin = "2.1.0"
-kotlinx-coroutines = "1.9.0"
-kotlinx-serialization = "1.7.3"
-ksp = "2.1.0-1.0.29"
-datetime = "0.6.1"
+kotlin = "2.2.0"
+kotlinx-coroutines = "1.10.2"
+kotlinx-serialization = "2.1.20"
+kotlinx-serialization-json = "1.9.0"
+ksp = "2.1.20-2.0.1"
+datetime = "0.7.1"
 
 #Lint
-detekt = "1.23.7"
-detektComposeRules = "0.4.19"
-detektFormatting = "1.23.7"
+detekt = "1.23.8"
+detektComposeRules = "0.4.24"
+detektFormatting = "1.23.8"
 
 #DI
-kodein = "7.22"
+kodein = "7.26.1"
 
 #Compose
-compose-multiplatform = "1.7.3"
+compose-multiplatform = "1.8.2"
 compose-activity = "1.9.3"
-coil = "3.0.4"
-haze = "1.1.0"
+coil = "3.2.0"
+haze = "1.6.9"
 
 #Navigation
-decompose = "3.2.2"
+decompose = "3.3.0"
 
 #Desktop
-flatlaf = "3.5.4"
+flatlaf = "3.6.1"
 
 #Android
-agp = "8.5.2"
+agp = "8.11.1"
 android-splashscreen = "1.0.1"
-androidx-activityCompose = "1.9.3"
-androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.2.0"
-androidx-core-ktx = "1.15.0"
-androidx-lifecycle = "2.8.4"
+androidx-activityCompose = "1.10.1"
+androidx-appcompat = "1.7.1"
+androidx-constraintlayout = "2.2.1"
+androidx-core-ktx = "1.16.0"
+androidx-lifecycle = "2.9.1"
 androidx-material = "1.12.0"
 
 #Tests
@@ -63,7 +64,7 @@ gradleplugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plug
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
-kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json"}
 kotlin-ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 
 #Lint
